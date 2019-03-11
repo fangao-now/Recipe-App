@@ -9,13 +9,13 @@ export class RecipeService {
     private recipes: Recipe[] = [
         new Recipe('Test Recipe 1', 'recipe 1 description', 'https://www.cbc.ca/food/content/images/recipes/CowboySteak.jpg', 
         [
-            new Ingredient('Steak', 1),
-            new Ingredient('Basil', 2)
+            new Ingredient('Steak', '1'),
+            new Ingredient('Basil', '2')
         ]),
         new Recipe('Test Recipe 2', 'recipe 2 description', 'https://www.cbc.ca/food/content/images/recipes/CowboySteak.jpg', 
         [
-            new Ingredient('Steak', 1),
-            new Ingredient('Basil', 2)
+            new Ingredient('Steak', '1'),
+            new Ingredient('Basil', '2')
         ])
     ];
 
