@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.model';
@@ -14,7 +14,8 @@ export class RecipeEditComponent implements OnInit {
   editMode = false;
   recipeForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService,
+    private router: Router) { }
 
   ngOnInit() {
     // this observable is managed by angular, thus we don't need to clean up this in ngOnDestroy()
@@ -68,6 +69,7 @@ export class RecipeEditComponent implements OnInit {
     } else {
       this.recipeService.addRecipe(newRecipe);
     }
+    this.onCancel();
   }
 
   getIngredientsControls() {
@@ -82,5 +84,9 @@ export class RecipeEditComponent implements OnInit {
       })
     );
     console.log(this.recipeForm.value.ingredients);
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 }
