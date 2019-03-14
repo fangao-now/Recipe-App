@@ -7,7 +7,7 @@ import { RecipesDetailsComponent } from './recipes-details/recipes-details.compo
 import { AuthGuard } from '../auth/auth-guard.service';
 
 const recipesRoutes: Routes = [{
-    path: 'recipes', component: RecipesComponent, children: [{
+    path: '', component: RecipesComponent, children: [{
         path: '', component: RecipeStartComponent
     },
     // order is important since if :id is in front, then angular will parse new as an id
