@@ -31,6 +31,11 @@ export class AuthService {
     );
   }
 
+  logoutUser() {
+    firebase.auth().signOut();
+    this.token = null;
+  }
+
   getoken() {
     firebase.auth().currentUser.getIdToken()
     .then(
@@ -38,5 +43,9 @@ export class AuthService {
     );
 
     return this.token;
+  }
+
+  isLoggedIn() {
+    return this.token != null;
   }
 }
