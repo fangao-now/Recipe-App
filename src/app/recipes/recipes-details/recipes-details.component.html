@@ -18,7 +18,8 @@
     class="btn-group"
     appDropdown>
       <button type="button" 
-      class="btn btn-primary dropdown-toggle">Manage Recipe <span class="caret"></span>
+      class="btn btn-primary dropdown-toggle"
+      *ngIf="authService.isLoggedIn()">Manage Recipe <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
       <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
@@ -35,6 +36,8 @@
     {{ detailedRecipeDisplayed.description }}
   </div>
 </div>
+<hr>
+<h3>Ingredients</h3>
 <div class="row">
   <div class="col-xs-12">
     <ul class="list-group">

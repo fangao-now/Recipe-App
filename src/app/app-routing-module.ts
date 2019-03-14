@@ -7,6 +7,7 @@ import { RecipesDetailsComponent } from './recipes/recipes-details/recipes-detai
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -14,9 +15,9 @@ const appRoutes: Routes = [
         { path: '', component: RecipeStartComponent },
         // order is important since if :id is in front, then angular will parse new as an id
         // thus won't able to resolve the /recipes/new
-        { path: 'new', component: RecipeEditComponent },
+        { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
         { path: ':id', component: RecipesDetailsComponent },
-        { path: ':id/edit', component: RecipeEditComponent }
+        { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] }
     ] },
     { path: 'shopping-list', component: ShoppingListComponent },
     { path: 'signup', component: SignupComponent },
