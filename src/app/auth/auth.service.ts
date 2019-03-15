@@ -40,12 +40,18 @@ export class AuthService {
   }
 
   getoken() {
-    firebase.auth().currentUser.getIdToken()
-    .then(
-      (token: string) => this.token = token
-    );
+    if (firebase.auth().currentUser) {
+      firebase.auth().currentUser.getIdToken()
+      .then(
+        (token: string) => this.token = token
+      )
+      .catch(
+        error => console.log(error)
+      );
 
-    return this.token;
+      return this.token;
+    }
+    return null;
   }
 
   isLoggedIn() {
