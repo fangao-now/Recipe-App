@@ -4,6 +4,8 @@ import { RecipeService } from '../recipes/recipe.service';
 import { AuthService } from '../auth/auth.service';
 import { Recipe } from '../recipes/recipe.model';
 import { map } from 'rxjs/operators';
+import { Ingredient } from './ingredient.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ export class DataStorageService {
 
   constructor(private httpClient: HttpClient,
               private recipeService: RecipeService,
+              private shoppingListService: ShoppingListService,
               private authService: AuthService) { }
 
   storeRecipes() {
@@ -37,5 +40,25 @@ export class DataStorageService {
         this.recipeService.setRecipes(recipes);
       }
     );
+  }
+
+  getShoppingList() {
+    this.httpClient.get<Ingredient[]>('https://angular-exercise-database.firebaseio.com/shoppinglist.json').pipe(
+    map(
+      (ingredients) => {
+        return ingredients;
+      }
+    ))
+    .subscribe(
+      (ingredients: Ingredient[]) => {
+        this.shoppingListService.setIngredients(ingredients);
+      }
+    );
+  }
+
+  storeShoppingList() {
+    const token = this.authService.getoken();
+    return this.httpClient.put('https://angular-exercise-database.firebaseio.com/shoppinglist.json?auth=' + token,
+    this.shoppingListService.getIngredients());
   }
 }

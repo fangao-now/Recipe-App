@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataStorageService } from '../../shared/data-storage.service';
 import { AuthService } from '../../auth/auth.service';
 import { Recipe } from 'src/app/recipes/recipe.model';
+import { Ingredient } from 'src/app/shared/ingredient.model';
 
 @Component({
   selector: 'app-header',
@@ -18,10 +19,17 @@ export class HeaderComponent {
         console.log(recipes);
       }
     );
+
+    this.dataStorageService.storeShoppingList().subscribe(
+      (ingredients: Ingredient[]) => {
+        console.log(ingredients);
+      }
+    );
   }
 
   onFetchData() {
     this.dataStorageService.getRecipes();
+    this.dataStorageService.getShoppingList();
   }
 
   onLogout() {
