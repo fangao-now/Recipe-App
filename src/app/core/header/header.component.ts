@@ -16,13 +16,13 @@ export class HeaderComponent {
   onSaveData() {
     this.dataStorageService.storeRecipes().subscribe(
       (recipes: Recipe[]) => {
-        console.log(recipes);
+        // console.log(recipes);
       }
     );
 
     this.dataStorageService.storeShoppingList().subscribe(
       (ingredients: Ingredient[]) => {
-        console.log(ingredients);
+        // console.log(ingredients);
       }
     );
   }

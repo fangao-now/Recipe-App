@@ -13,7 +13,7 @@ export class AuthService {
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .catch(
-      error => console.log(error)
+      // error => console.log(error)
     );
   }
 
@@ -29,7 +29,7 @@ export class AuthService {
         );
     })
     .catch(
-      error => console.log(error)
+      // error => console.log(error)
     );
   }
 
@@ -46,7 +46,7 @@ export class AuthService {
         (token: string) => this.token = token
       )
       .catch(
-        error => console.log(error)
+        // error => console.log(error)
       );
 
       return this.token;

@@ -8,7 +8,11 @@ export class ShoppingListService {
   private ingredients: Ingredient[] = [];
 
   getIngredients() {
-    return this.ingredients.slice();
+    if (this.ingredients) {
+      return this.ingredients.slice();
+    } else {
+      return [];
+    }
   }
 
   getIngredient(index: number) {
@@ -37,6 +41,10 @@ export class ShoppingListService {
 
   setIngredients(ingredients: Ingredient[]) {
     this.ingredients = ingredients;
-    this.ingredientsChanged.next(this.ingredients.slice());
+    if (this.ingredients) {
+      this.ingredientsChanged.next(this.ingredients.slice());
+    } else {
+      this.ingredientsChanged.next([]);
+    }
 }
 }

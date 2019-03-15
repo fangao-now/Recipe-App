@@ -82,7 +82,7 @@ export class RecipeEditComponent implements OnInit {
         amount: new FormControl(null, Validators.required)
       })
     );
-    console.log(this.recipeForm.value.ingredients);
+    // console.log(this.recipeForm.value.ingredients);
   }
 
   onCancel() {
