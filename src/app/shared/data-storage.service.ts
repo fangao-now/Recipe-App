@@ -21,8 +21,7 @@ export class DataStorageService {
   }
 
   getRecipes() {
-    const token = this.authService.getoken();
-    this.httpClient.get<Recipe[]>('https://angular-exercise-database.firebaseio.com/recipes.json?auth=' + token).pipe(
+    this.httpClient.get<Recipe[]>('https://angular-exercise-database.firebaseio.com/recipes.json').pipe(
     map(
       (recipes) => {
         for (const recipe of recipes) {
