@@ -40,4 +40,8 @@ export class RecipesDetailsComponent implements OnInit {
     this.recipeService.deleteRecipe(this.id);
     this.router.navigate(['/recipes']);
   }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 }

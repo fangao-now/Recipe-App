@@ -19,7 +19,7 @@
     appDropdown>
       <button type="button" 
       class="btn btn-primary dropdown-toggle"
-      *ngIf="authService.isLoggedIn()">Manage Recipe <span class="caret"></span>
+      *ngIf="isLoggedIn()">Manage Recipe <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
       <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
