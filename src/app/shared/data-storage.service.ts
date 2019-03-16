@@ -46,7 +46,11 @@ export class DataStorageService {
     this.httpClient.get<Ingredient[]>('https://angular-exercise-database.firebaseio.com/shoppinglist.json').pipe(
     map(
       (ingredients) => {
-        return ingredients;
+        if (ingredients) {
+          return ingredients;
+        } else {
+          return [];
+        }
       }
     ))
     .subscribe(

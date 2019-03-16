@@ -1,19 +1,22 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   token: string;
+  tokenInvalid = new Subject<string>();
+  signUpFailed = new Subject<string>();
 
   constructor(private router: Router) { }
 
   signupUser(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .catch(
-      // error => console.log(error)
+      error => this.signUpFailed.next(error)
     );
   }
 
@@ -29,7 +32,7 @@ export class AuthService {
         );
     })
     .catch(
-      // error => console.log(error)
+      (error) => this.tokenInvalid.next(error)
     );
   }
 
