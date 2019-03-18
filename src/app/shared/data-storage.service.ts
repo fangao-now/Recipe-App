@@ -19,7 +19,7 @@ export class DataStorageService {
 
   storeRecipes() {
     const token = this.authService.getoken();
-    return this.httpClient.put('https://angular-exercise-database.firebaseio.com/recipes.json?auth=' + token,
+    return this.httpClient.put('https://angular-exercise-database.firebaseio.com/recipes.json',
     this.recipeService.getRecipes());
   }
 
@@ -62,7 +62,7 @@ export class DataStorageService {
 
   storeShoppingList() {
     const token = this.authService.getoken();
-    return this.httpClient.put('https://angular-exercise-database.firebaseio.com/shoppinglist.json?auth=' + token,
+    return this.httpClient.put('https://angular-exercise-database.firebaseio.com/shoppinglist.json?',
     this.shoppingListService.getIngredients());
   }
 }
